@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Live</title>
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/norm.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/base.css?v={{version}}">
+    <script src="js/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+<h2 id="h2title">Test</h2>
+</body>
+<script>
+    const version = "{{version}}";
+</script>
+<script src="wasm_exec.js"></script>
+<script>
+    const go = new Go();
+    let mod, inst;
+
+    fetch("main.wasm?v=" + version).then(response => {
+        response.arrayBuffer().then(buffer => {
+            WebAssembly.instantiate(buffer, go.importObject).then((result) => {
+                mod = result.module;
+                inst = result.instance;
+                run().then(r => {
+                });
+            }).catch((err) => {
+                console.error(err);
+            })
+        }).catch((err) => {
+            console.error(err);
+        })
+    }).catch((err) => {
+        console.error(err);
+    })
+
+    async function run() {
+        await go.run(inst);
+        inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance
+    }
+
+    window.wg = {
+        refresh: () => {
+        },
+        refreshNow: false,
+    };
+
+    let lastRefresh = 0;
+
+    function refresher(safeRefresh) {
+        if (safeRefresh === true && lastRefresh + 200 > performance.now()) return;
+        if (wg.refreshNow || lastRefresh + 100 < performance.now() || performance.now() < 1000) {
+            wg.refreshNow = false;
+            wg.refresh(performance.now());
+            lastRefresh = performance.now();
+        }
+        requestAnimationFrame(refresher);
+    }
+
+    refresher();
+    setInterval(() => refresher(true), 150);
+</script>
+</html>

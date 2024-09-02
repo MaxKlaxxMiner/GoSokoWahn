@@ -1,0 +1,17 @@
+html, body {
+  background: #191919;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+#h2title {
+  color: #ccc;
+  padding: 16px;
+}
+
+/*# sourceMappingURL=base.css.map */
