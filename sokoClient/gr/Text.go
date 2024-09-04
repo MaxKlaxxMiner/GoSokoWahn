@@ -18,7 +18,7 @@ func (g *Gr) FillTextFS(x, y float64, txt, fillStyle string) {
 	g.FillTextF(x, y, txt)
 }
 
-func (g *Gr) MeasureText(txt string) (width float64) {
+func (g *Gr) MeasureTextWidth(txt string) (width float64) {
 	r := g.Ctx.Call("measureText", txt)
 	return r.Get("width").Float()
 }

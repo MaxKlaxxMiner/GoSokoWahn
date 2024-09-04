@@ -15,6 +15,9 @@ import (
 const port = "9000"
 
 func main() {
+	//test()
+	//return
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" {
 			w.Header().Set("Content-Type", "text/html")

@@ -1,7 +1,7 @@
 package gr
 
 import (
-	"live/wg"
+	"sokoClient/wg"
 	"strconv"
 	"syscall/js"
 )

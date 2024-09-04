@@ -49,6 +49,18 @@ type Rect struct {
 	X, Y, W, H float64
 }
 
+type PosI struct {
+	X, Y int
+}
+
+type LineI struct {
+	X1, Y1, X2, Y2 int
+}
+
+type RectI struct {
+	X, Y, W, H int
+}
+
 func sliceToFloat64Array(s any) js.Value {
 	switch s := s.(type) {
 	case []float64:
@@ -71,6 +83,31 @@ func sliceToFloat64Array(s any) js.Value {
 		js.CopyBytesToJS(a, unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(s))), len(s)*32))
 		runtime.KeepAlive(s)
 		return js.Global().Get("Float64Array").New(a.Get("buffer"), a.Get("byteOffset"), len(s)*4)
+	case []PosI:
+		tmp := make([]Pos, len(s))
+		for i := 0; i < len(tmp); i++ {
+			tmp[i].X = float64(s[i].X)
+			tmp[i].Y = float64(s[i].Y)
+		}
+		return sliceToFloat64Array(tmp)
+	case []LineI:
+		tmp := make([]Line, len(s))
+		for i := 0; i < len(tmp); i++ {
+			tmp[i].X1 = float64(s[i].X1)
+			tmp[i].Y1 = float64(s[i].Y1)
+			tmp[i].X2 = float64(s[i].X2)
+			tmp[i].Y2 = float64(s[i].Y2)
+		}
+		return sliceToFloat64Array(tmp)
+	case []RectI:
+		tmp := make([]Rect, len(s))
+		for i := 0; i < len(tmp); i++ {
+			tmp[i].X = float64(s[i].X)
+			tmp[i].Y = float64(s[i].Y)
+			tmp[i].W = float64(s[i].W)
+			tmp[i].H = float64(s[i].H)
+		}
+		return sliceToFloat64Array(tmp)
 	default:
 		panic(fmt.Sprintf("jsutil: unexpected value at SliceToTypedArray: %T", s))
 	}

@@ -39,7 +39,19 @@ func (g *Gr) BulkPolyLine(points ...Pos) {
 	}
 }
 
+func (g *Gr) BulkPolyLineI(points ...PosI) {
+	if len(points) > 0 {
+		win.Call("_bulkPolyLine", g.Ctx, sliceToFloat64Array(points))
+	}
+}
+
 func (g *Gr) BulkLines(lines ...Line) {
+	if len(lines) > 0 {
+		win.Call("_bulkLines", g.Ctx, sliceToFloat64Array(lines))
+	}
+}
+
+func (g *Gr) BulkLinesI(lines ...LineI) {
 	if len(lines) > 0 {
 		win.Call("_bulkLines", g.Ctx, sliceToFloat64Array(lines))
 	}
