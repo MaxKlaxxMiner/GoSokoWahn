@@ -1,0 +1,19 @@
+
+.gui {
+  position: absolute;
+  height: 100%;
+  user-select: none;
+  background: #111213;
+
+  table, tbody, tr, td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    border: none;
+    border-spacing: 0;
+  }
+
+  canvas {
+    display: block;
+  }
+}

@@ -9,8 +9,4 @@ html, body {
   user-select: none;
 }
 
-#h2title {
-  color: #ccc;
-  padding: 16px;
-  position: absolute;
-}
+@import "gui";
