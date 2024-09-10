@@ -2,8 +2,6 @@ module sokoClient
 
 go 1.21
 
-require github.com/MaxKlaxxMiner/GoSokoWahn/sokoLib v0.0.0-20240904174251-4f8a4394a8e3
-
-require golang.org/x/exp v0.0.0-20240904232852-e7e105dedf7e // indirect
+require github.com/MaxKlaxxMiner/GoSokoWahn/sokoLib v0.0.0-20240909165206-c1a351076293
 
 replace github.com/MaxKlaxxMiner/GoSokoWahn/sokoLib => ../sokoLib

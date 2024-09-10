@@ -30,6 +30,10 @@ func NewRoomsDebug(container js.Value) *RoomsDebug {
 
 		g.FillRectS(r.evIntern.mouseXreal, r.evIntern.mouseYreal-24, -16, -16, "#0c08")
 		g.FillTextS(r.evIntern.mouseXreal+8, r.evIntern.mouseYreal-24-8, "not compensated", "#ccc")
+
+		g.BeginPath()
+		g.BulkLinesI(gr.LineI{r.mouseX, r.mouseY, r.mouseX + 50, r.mouseY + 50}, gr.LineI{r.mouseX, r.mouseY, r.mouseX + 20, r.mouseY + 70}, gr.LineI{r.mouseX, r.mouseY, r.mouseX + 70, r.mouseY + 20})
+		g.StrokeS("#ccc")
 	}
 	r.AppendRow(r.main)
 

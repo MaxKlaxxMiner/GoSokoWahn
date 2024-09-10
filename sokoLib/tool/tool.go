@@ -1,7 +1,9 @@
 package tool
 
-import "os"
-import "golang.org/x/exp/constraints"
+import (
+	"github.com/MaxKlaxxMiner/GoSokoWahn/sokoLib/tool/constraints"
+	"os"
+)
 
 func Min[T constraints.Ordered](a, b T) T {
 	if a < b {

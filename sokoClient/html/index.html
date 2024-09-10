@@ -55,7 +55,7 @@
             wg.refresh(performance.now());
             lastRefresh = performance.now();
         }
-        requestAnimationFrame(refresher);
+        if (safeRefresh !== true) requestAnimationFrame(refresher);
     }
 
     refresher();
